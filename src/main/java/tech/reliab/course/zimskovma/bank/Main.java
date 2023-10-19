@@ -1,19 +1,74 @@
-package org.example;
+package tech.reliab.course.zimskovma.bank;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import tech.reliab.course.zimskovma.bank.entity.Bank;
+import tech.reliab.course.zimskovma.bank.entity.BankAtm;
+import tech.reliab.course.zimskovma.bank.entity.BankOffice;
+import tech.reliab.course.zimskovma.bank.entity.User;
+import tech.reliab.course.zimskovma.bank.entity.CreditAccount;
+import tech.reliab.course.zimskovma.bank.entity.Employee;
+import tech.reliab.course.zimskovma.bank.entity.PaymentAccount;
+import tech.reliab.course.zimskovma.bank.service.AtmService;
+import tech.reliab.course.zimskovma.bank.service.BankOfficeService;
+import tech.reliab.course.zimskovma.bank.service.BankService;
+import tech.reliab.course.zimskovma.bank.service.CreditAccountService;
+import tech.reliab.course.zimskovma.bank.service.EmployeeService;
+import tech.reliab.course.zimskovma.bank.service.UserService;
+import tech.reliab.course.zimskovma.bank.service.PaymentAccountService;
+import tech.reliab.course.zimskovma.bank.service.impl.AtmServiceImpl;
+import tech.reliab.course.zimskovma.bank.service.impl.BankOfficeServiceImpl;
+import tech.reliab.course.zimskovma.bank.service.impl.BankServiceImpl;
+import tech.reliab.course.zimskovma.bank.service.impl.CreditAccountServiceImpl;
+import tech.reliab.course.zimskovma.bank.service.impl.EmployeeServiceImpl;
+import tech.reliab.course.zimskovma.bank.service.impl.PaymentAccountServiceImpl;
+import tech.reliab.course.zimskovma.bank.service.impl.UserServiceImpl;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        BankService bankService = new BankServiceImpl();
+        Bank bank = bankService.create(new Bank("СБЕР"));
+        System.out.println(bank);
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        BankOfficeService bankOfficeService = new BankOfficeServiceImpl();
+        BankOffice bankOffice = bankOfficeService.create(new BankOffice(
+                "Центральный офис",
+                "Центр",
+                bank
+                ));
+        System.out.println(bankOffice);
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        EmployeeService employeeService = new EmployeeServiceImpl();
+        Employee employee = employeeService
+                .create(new Employee("Князь Михайлов",
+                        bank,
+                        bankOffice
+                ));
+        System.out.println(employee);
+
+        AtmService atmService = new AtmServiceImpl();
+        BankAtm bankAtm = atmService.create(new BankAtm("Банкомат центрального офиса",
+                bank,
+                bankOffice,
+                employee
+        ));
+        System.out.println(bankAtm);
+
+        UserService userService = new UserServiceImpl();
+        User user = userService
+                .create(new User("Генадий Весёлый",
+                        bank
+                ));
+        System.out.println(user);
+
+        PaymentAccountService paymentAccountService = new PaymentAccountServiceImpl();
+        PaymentAccount paymentAccount = paymentAccountService
+                .create(new PaymentAccount(user, bank, new BigDecimal("1000000")));
+        System.out.println(paymentAccount);
+
+        CreditAccountService creditAccountService = new CreditAccountServiceImpl();
+        CreditAccount creditAccount = creditAccountService.create(new CreditAccount(user, bank, employee, paymentAccount));
+        System.out.println(creditAccount);
     }
 }
