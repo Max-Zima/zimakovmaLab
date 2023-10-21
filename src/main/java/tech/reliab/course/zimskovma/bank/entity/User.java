@@ -137,15 +137,11 @@ public class User {
 
     @Override
     public String toString() {
-        return "{" +
-                "\n id='" + getId() + "'" +
-                ",\n name='" + getName() + "'" +
-                ",\n birthdDate='" + getBirthDate() + "'" +
-                ",\n person='" + super.toString() + "'" +
-                ",\n placeOfWork='" + getPlaceOfWork() + "'" +
-                ",\n monthlyIncome='" + getMonthlyIncome() + "'" +
-                ",\n bank='" + getBank() + "'" +
-                ",\n creditRating='" + getCreditRating() + "'" +
-                "\n}";
+        return "Клиент банка" + getBank() +
+                ",\n ФИО='" + getName() + "'" +
+                ",\n Дата рождения ='" + getBirthDate() + "'" +
+                ",\n Место работы='" + getPlaceOfWork() + "'" +
+                ",\n Ежемесячный доход='" + getMonthlyIncome() + "'" +
+                ",\n Кредитный рейтинг для банка='" + getCreditRating() + "'" + "\n";
     }
 }

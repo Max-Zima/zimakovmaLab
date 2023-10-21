@@ -221,19 +221,17 @@ public class BankOffice {
 
     @Override
     public String toString() {
-        return "{" +
-                "\n id='" + getId() + "'" +
-                ",\n name='" + getName() + "'" +
-                ",\n address='" + getAddress() + "'" +
-                ",\n bank='" + getBank() + "'" +
-                ",\n isWorking='" + isIsWorking() + "'" +
-                ",\n isAtmPlaceable='" + isIsAtmPlaceable() + "'" +
-                ",\n atmCount='" + getAtmCount() + "'" +
-                ",\n isCreditAvailable='" + isIsCreditAvailable() + "'" +
-                ",\n isCashWithdrawalAvailable='" + isIsCashWithdrawalAvailable() + "'" +
-                ",\n isCashDepositAvailable='" + isIsCashDepositAvailable() + "'" +
-                ",\n totalMoney='" + getTotalMoney() + "'" +
-                ",\n rentPrice='" + getRentPrice() + "'" +
-                "\n}";
+        return  "Банковский офис №" + getId() + "'" +
+                ",\n Название офиса ='" + getName() + "'" +
+                ",\n Адрес ='" + getAddress() + "'" +
+                ",\n Банк='" + getBank() + "'" +
+                ",\n Статус работы ='" + isIsWorking() + "'" +
+                ",\n Можно ли разместить банкомат ='" + isIsAtmPlaceable() + "'" +
+                ",\n Кол-во банкоматов в данном офисе ='" + getAtmCount() + "'" +
+                ",\n Можно ли оформить кредит в данном офисе?='" + isIsCreditAvailable() + "'" +
+                ",\n Работает ли на выдачу денег?='" + isIsCashWithdrawalAvailable() + "'" +
+                ",\n Можно ли внести деньги?='" + isIsCashDepositAvailable() + "'" +
+                ",\n Кол-во денег в банковском офисе ='" + getTotalMoney() + "'" +
+                ",\n Стоимость аренды банковского офиса='" + getRentPrice() + "'" + "\n";
     }
 }

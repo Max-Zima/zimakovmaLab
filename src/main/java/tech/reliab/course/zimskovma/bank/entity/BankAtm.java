@@ -204,18 +204,16 @@ public class BankAtm {
 
     @Override
     public String toString() {
-        return "{" +
-                "\n id='" + getId() + "'" +
-                ",\n name='" + getName() + "'" +
-                ",\n address='" + getAddress() + "'" +
-                ",\n status='" + getStatus() + "'" +
-                ",\n bank='" + getBank() + "'" +
-                ",\n bankOffice='" + getBankOffice() + "'" +
-                ",\n employee='" + getEmployee() + "'" +
-                ",\n isCashWithdrawalAvailable='" + isIsCashWithdrawalAvailable() + "'" +
-                ",\n isCashDepositAvailable='" + isIsCashDepositAvailable() + "'" +
-                ",\n totalMoney='" + getTotalMoney() + "'" +
-                ",\n maintenanceCost='" + getMaintenanceCost() + "'" +
-                "\n}";
+        return "Банкома №" + getId() + "'" +
+                ",\n Название='" + getName() + "'" +
+                ",\n Адрес='" + getAddress() + "'" +
+                ",\n Статус состояния='" + getStatus() + "'" +
+                ",\n Банк, которому принадлжеит банокмат ='" + getBank() + "'" +
+                ",\n Расположение банкомата='" + getBankOffice() + "'" +
+                ",\n Обслуживающий сотрудник='" + getEmployee() + "'" +
+                ",\n Выдаёт деньги ='" + isIsCashWithdrawalAvailable() + "'" +
+                ",\n Принимает деньги ='" + isIsCashDepositAvailable() + "'" +
+                ",\n Кол-во денег в банкомате='" + getTotalMoney() + "'" +
+                ",\n Стоимость обслуживания банкомата='" + getMaintenanceCost() + "'" + "\n";
     }
 }

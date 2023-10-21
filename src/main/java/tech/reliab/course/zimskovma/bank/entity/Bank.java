@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public class Bank {
-    public static final BigDecimal MAX_RATING = new BigDecimal("100");
-    public static final BigDecimal MAX_TOTAL_MONEY = new BigDecimal("1000000");
-    public static final BigDecimal MAX_INTEREST_RATE = new BigDecimal("20");
+    public static final BigDecimal MAX_RATING = new int("100");
+    public static final BigDecimal MAX_TOTAL_MONEY = new int("1000000");
+    public static final BigDecimal MAX_INTEREST_RATE = new int("20");
 
     private UUID id;
     private String name;
@@ -157,16 +157,13 @@ public class Bank {
 
     @Override
     public String toString() {
-        return "{" +
-                "\n id = '" + getId() + "'" +
-                ",\n name='" + getName() + "'" +
-                ",\n officeCount='" + getOfficeCount() + "'" +
-                ",\n atmCount='" + getAtmCount() + "'" +
-                ",\n employeeCount='" + getEmployeeCount() + "'" +
-                ",\n clientCount='" + getClientCount() + "'" +
-                ",\n rating='" + getRating() + "'" +
-                ",\n totalMoney='" + getTotalMoney() + "'" +
-                ",\n interestRate='" + getInterestRate() + "'" +
-                "\n";
+        return "Банк" + getName() + "'" +
+                ",\n Кол-во офисов ='" + getOfficeCount() + "'" +
+                ",\n Кол-во банкоматов ='" + getAtmCount() + "'" +
+                ",\n Кол-во сотрудников ='" + getEmployeeCount() + "'" +
+                ",\n Кол-во клиентов ='" + getClientCount() + "'" +
+                ",\n Рейтинг банка ='" + getRating() + "'" +
+                ",\n Всего денег ='" + getTotalMoney() + "'" +
+                ",\n Процентная ставка ='" + getInterestRate() + "'" + "\n";
     }
 }

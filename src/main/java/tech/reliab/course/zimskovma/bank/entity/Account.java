@@ -70,10 +70,9 @@ public class Account {
 
     @Override
     public String toString() {
-        return "{" +
-                "\n id='" + getId() + "'" +
-                ",\n client='" + getClient() + "'" +
-                ",\n bank='" + getBank() + "'" +
-                "\n}";
+        return "аккаунт" +
+                "\n id аккаунта ='" + getId() + "'" +
+                ",\n Имя клиента ='" + getClient() + "'" +
+                ",\n Банк ='" + getBank() + "'" + "\n";
     }
 }

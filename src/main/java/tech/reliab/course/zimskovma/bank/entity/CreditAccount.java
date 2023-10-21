@@ -175,17 +175,15 @@ public class CreditAccount extends Account{
 
     @Override
     public String toString() {
-        return "{" +
-                "\n account='" + super.toString() + "'" +
-                ",\n dateStart='" + getDateStart() + "'" +
-                ",\n dateEnd='" + getDateEnd() + "'" +
-                ",\n monthCount='" + getMonthCount() + "'" +
-                ",\n creditAmount='" + getCreditAmount() + "'" +
-                ",\n remainingCreditAmount='" + getRemainingCreditAmount() + "'" +
-                ",\n montlyPayment='" + getMonthlyPayment() + "'" +
-                ",\n interestRate='" + getInterestRate() + "'" +
-                ",\n employee='" + getEmployee() + "'" +
-                ",\n paymentAccount='" + getPaymentAccount() + "'" +
-                "\n}";
+        return  "Кредитный '" + super.toString() + "'" +
+                ",\n Дата начала кредита ='" + getDateStart() + "'" +
+                ",\n Дата окончания кредита ='" + getDateEnd() + "'" +
+                ",\n Срок кредита ='" + getMonthCount() + "'" + " мес. " +
+                ",\n Сумма кредита='" + getCreditAmount() + "'" +
+                ",\n Оставшаяся сумма кредита='" + getRemainingCreditAmount() + "'" +
+                ",\n Сумма ежемесячного платежа='" + getMonthlyPayment() + "'" +
+                ",\n Процентная ставка='" + getInterestRate() + "'" +
+                ",\n Сотрудник, который выдал кредит='" + getEmployee() + "'" +
+                ",\n Платежный счет='" + getPaymentAccount() + "'" + "\n";
     }
 }
