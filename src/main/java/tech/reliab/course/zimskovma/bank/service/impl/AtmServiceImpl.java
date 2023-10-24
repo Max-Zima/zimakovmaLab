@@ -13,11 +13,11 @@ public class AtmServiceImpl implements AtmService {
         if (bankAtm == null) {
             return null;
         }
-        if (bankAtm.getTotalMoney().signum() < 0) {
+        if (bankAtm.getTotalMoney() < 0) {
             System.err.println("Error: cannot create BankAtm - totalMoney doesn't be negative");
             return null;
         }
-        if (bankAtm.getMaintenanceCost().signum() < 0) {
+        if (bankAtm.getMaintenanceCost() < 0) {
             System.err.println("Error: cannot create BankAtm - maintenanceCost doesn't be negative");
             return null;
         }

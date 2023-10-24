@@ -1,6 +1,7 @@
 package tech.reliab.course.zimskovma.bank.service.impl;
 
 import java.math.BigDecimal;
+import java.util.Random;
 
 import tech.reliab.course.zimskovma.bank.entity.User;
 import tech.reliab.course.zimskovma.bank.service.UserService;
@@ -20,8 +21,8 @@ public class UserServiceImpl implements UserService {
         }
 
         User createdclient = new User(user);
-        BigDecimal random = BigDecimal.valueOf(Math.random());
-        final BigDecimal monthlyIncome = random.multiply(User.MAX_MONTHLY_INCOME);
+        final Random random = new Random();
+        final double monthlyIncome = random.nextDouble() * (User.MAX_MONTHLY_INCOME);
         createdclient.setMonthlyIncome(monthlyIncome);
         calculateCreditRating(createdclient);
 
@@ -29,9 +30,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public BigDecimal calculateCreditRating(User user) {
+    public double calculateCreditRating(User user) {
         user.setCreditRating(
-                user.getMonthlyIncome().divide(new BigDecimal("1000").multiply(new BigDecimal("100"))));
+                user.getMonthlyIncome() / 1000000 );
         return user.getCreditRating();
     }
 }

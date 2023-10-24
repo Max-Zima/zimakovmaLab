@@ -18,7 +18,7 @@ public class Employee {
     private boolean isWorkingFromHome;
     private BankOffice bankOffice;
     private boolean isCreditAvailable;
-    private BigDecimal salary;
+    private double  salary;
 
     private void initDefault() {
         id = UUID.randomUUID();
@@ -29,7 +29,7 @@ public class Employee {
         isWorkingFromHome = false;
         bankOffice = null;
         isCreditAvailable = false;
-        salary = new BigDecimal("0");
+        salary = 0;
     }
 
     public Employee() {
@@ -55,7 +55,7 @@ public class Employee {
     }
 
     public Employee(String name, LocalDate birthDate, Job job, Bank bank, boolean isWorkingFromHome,
-                    BankOffice bankOffice, boolean isCreditAvailable, BigDecimal salary) {
+                    BankOffice bankOffice, boolean isCreditAvailable, double salary) {
         initDefault();
         this.name = name;
         this.birthDate = birthDate;
@@ -68,7 +68,7 @@ public class Employee {
     }
 
     public Employee(UUID id, String name, LocalDate birthDate, Job job, Bank bank, boolean isWorkingFromHome,
-                    BankOffice bankOffice, boolean isCreditAvailable, BigDecimal salary) {
+                    BankOffice bankOffice, boolean isCreditAvailable, double salary) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
@@ -164,11 +164,11 @@ public class Employee {
         this.isCreditAvailable = isCreditAvailable;
     }
 
-    public BigDecimal getSalary() {
+    public double  getSalary() {
         return this.salary;
     }
 
-    public void setSalary(BigDecimal salary) {
+    public void setSalary(double  salary) {
         this.salary = salary;
     }
 

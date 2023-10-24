@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public class PaymentAccount extends Account {
-    private BigDecimal balance;
+    private double  balance;
 
     private void initDefault() {
-        balance = new BigDecimal("0");
+        balance = 0;
     }
 
     public PaymentAccount() {
@@ -30,12 +30,12 @@ public class PaymentAccount extends Account {
         initDefault();
     }
 
-    public PaymentAccount(User user, Bank bank, BigDecimal balance) {
+    public PaymentAccount(User user, Bank bank, double balance) {
         super(user, bank);
         this.balance = balance;
     }
 
-    public PaymentAccount(UUID id, User user, Bank bank, BigDecimal balance) {
+    public PaymentAccount(UUID id, User user, Bank bank, double balance) {
         super(id, user, bank);
         this.balance = balance;
     }
@@ -45,11 +45,11 @@ public class PaymentAccount extends Account {
         this.balance = paymentAccount.balance;
     }
 
-    public BigDecimal getBalance() {
+    public double getBalance() {
         return this.balance;
     }
 
-    public void setBalance(BigDecimal balance) {
+    public void setBalance(double  balance) {
         this.balance = balance;
     }
 

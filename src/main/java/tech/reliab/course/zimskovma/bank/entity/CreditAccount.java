@@ -8,10 +8,10 @@ public class CreditAccount extends Account{
     private LocalDate dateStart;
     private LocalDate dateEnd;
     private int monthCount;
-    private BigDecimal creditAmount;
-    private BigDecimal remainingCreditAmount;
-    private BigDecimal montlyPayment;
-    private BigDecimal interestRate;
+    private double  creditAmount;
+    private double  remainingCreditAmount;
+    private double  montlyPayment;
+    private double  interestRate;
     private Employee employee;
     private PaymentAccount paymentAccount;
 
@@ -19,10 +19,10 @@ public class CreditAccount extends Account{
         dateStart = null;
         dateEnd = null;
         monthCount = 0;
-        creditAmount = new BigDecimal("0");
-        remainingCreditAmount = new BigDecimal("0");
-        montlyPayment = new BigDecimal("0");
-        interestRate = new BigDecimal("0");
+        creditAmount = 0;
+        remainingCreditAmount = 0;
+        montlyPayment = 0;
+        interestRate = 0;
         employee = null;
         paymentAccount = null;
     }
@@ -59,8 +59,8 @@ public class CreditAccount extends Account{
     }
 
     public CreditAccount(User user, Bank bank, LocalDate dateStart, LocalDate dateEnd, int monthCount,
-                         BigDecimal creditAmount, BigDecimal remainingCreditAmount, BigDecimal montlyPayment,
-                         BigDecimal interestRate, Employee employee, PaymentAccount paymentAccount) {
+                         double  creditAmount, double  remainingCreditAmount, double  montlyPayment,
+                         double  interestRate, Employee employee, PaymentAccount paymentAccount) {
         super(user, bank);
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
@@ -74,8 +74,8 @@ public class CreditAccount extends Account{
     }
 
     public CreditAccount(UUID id, User user, Bank bank, LocalDate dateStart, LocalDate dateEnd, int monthCount,
-                         BigDecimal creditAmount, BigDecimal remainingCreditAmount, BigDecimal montlyPayment,
-                         BigDecimal interestRate, Employee employee, PaymentAccount paymentAccount) {
+                         double  creditAmount, double  remainingCreditAmount, double  montlyPayment,
+                         double  interestRate, Employee employee, PaymentAccount paymentAccount) {
         super(id, user, bank);
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
@@ -125,35 +125,35 @@ public class CreditAccount extends Account{
         this.monthCount = monthCount;
     }
 
-    public BigDecimal getCreditAmount() {
+    public double  getCreditAmount() {
         return this.creditAmount;
     }
 
-    public void setCreditAmount(BigDecimal creditAmount) {
+    public void setCreditAmount(double  creditAmount) {
         this.creditAmount = creditAmount;
     }
 
-    public BigDecimal getRemainingCreditAmount() {
+    public double  getRemainingCreditAmount() {
         return this.remainingCreditAmount;
     }
 
-    public void setRemainingCreditAmount(BigDecimal remainingCreditAmount) {
+    public void setRemainingCreditAmount(double  remainingCreditAmount) {
         this.remainingCreditAmount = remainingCreditAmount;
     }
 
-    public BigDecimal getMonthlyPayment() {
+    public double  getMonthlyPayment() {
         return this.montlyPayment;
     }
 
-    public void setMontlyPayment(BigDecimal montlyPayment) {
+    public void setMontlyPayment(double  montlyPayment) {
         this.montlyPayment = montlyPayment;
     }
 
-    public BigDecimal getInterestRate() {
+    public double  getInterestRate() {
         return this.interestRate;
     }
 
-    public void setInterestRate(BigDecimal interestRate) {
+    public void setInterestRate(double interestRate) {
         this.interestRate = interestRate;
     }
 

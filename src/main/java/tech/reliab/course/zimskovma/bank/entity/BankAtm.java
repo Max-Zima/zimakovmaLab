@@ -19,8 +19,8 @@ public class BankAtm {
     private Employee employee;
     private boolean isCashWithdrawalAvailable;
     private boolean isCashDepositAvailable;
-    private BigDecimal totalMoney;
-    private BigDecimal maintenanceCost;
+    private double  totalMoney;
+    private double  maintenanceCost;
 
     private void initDefault() {
         id = UUID.randomUUID();
@@ -32,8 +32,8 @@ public class BankAtm {
         employee = null;
         isCashWithdrawalAvailable = false;
         isCashDepositAvailable = false;
-        totalMoney = new BigDecimal("0");
-        maintenanceCost = new BigDecimal("0");
+        totalMoney = 0;
+        maintenanceCost = 0;
     }
 
     public BankAtm() {
@@ -61,8 +61,8 @@ public class BankAtm {
     }
 
     public BankAtm(String name, String address, Status status, Bank bank, BankOffice bankOffice,
-                   Employee employee, boolean isCashWithdrawalAvailable, boolean isCashDepositAvailable, BigDecimal totalMoney,
-                   BigDecimal maintenanceCost) {
+                   Employee employee, boolean isCashWithdrawalAvailable, boolean isCashDepositAvailable, double  totalMoney,
+                   double  maintenanceCost) {
         initDefault();
         this.name = name;
         this.address = address;
@@ -77,8 +77,8 @@ public class BankAtm {
     }
 
     public BankAtm(UUID id, String name, String address, Status status, Bank bank, BankOffice bankOffice,
-                   Employee employee, boolean isCashWithdrawalAvailable, boolean isCashDepositAvailable, BigDecimal totalMoney,
-                   BigDecimal maintenanceCost) {
+                   Employee employee, boolean isCashWithdrawalAvailable, boolean isCashDepositAvailable, double  totalMoney,
+                   double  maintenanceCost) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -186,19 +186,19 @@ public class BankAtm {
         this.isCashDepositAvailable = isCashDepositAvailable;
     }
 
-    public BigDecimal getTotalMoney() {
+    public double  getTotalMoney() {
         return this.totalMoney;
     }
 
-    public void setTotalMoney(BigDecimal totalMoney) {
+    public void setTotalMoney(double  totalMoney) {
         this.totalMoney = totalMoney;
     }
 
-    public BigDecimal getMaintenanceCost() {
+    public double  getMaintenanceCost() {
         return this.maintenanceCost;
     }
 
-    public void setMaintenanceCost(BigDecimal maintenanceCost) {
+    public void setMaintenanceCost(double  maintenanceCost) {
         this.maintenanceCost = maintenanceCost;
     }
 

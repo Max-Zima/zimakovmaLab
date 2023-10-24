@@ -12,7 +12,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             return null;
         }
 
-        if (employee.getSalary().signum() < 0) {
+        if (employee.getSalary() < 0) {
             System.err.println("Error: Employee - salary doesn't be negative");
             return null;
         }

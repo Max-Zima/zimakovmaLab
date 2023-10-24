@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public class Bank {
-    public static final BigDecimal MAX_RATING = new int("100");
-    public static final BigDecimal MAX_TOTAL_MONEY = new int("1000000");
-    public static final BigDecimal MAX_INTEREST_RATE = new int("20");
+    public static final double MAX_RATING = 100;
+    public static final double MAX_TOTAL_MONEY = 1000000;
+    public static final double MAX_INTEREST_RATE = 20;
 
     private UUID id;
     private String name;
@@ -15,8 +15,8 @@ public class Bank {
     private int employeeCount;
     private int clientCount;
     private byte rating;
-    private BigDecimal totalMoney;
-    private BigDecimal interestRate;
+    private double totalMoney;
+    private double interestRate;
 
     private void initDefaults() {
         id = UUID.randomUUID();
@@ -26,8 +26,8 @@ public class Bank {
         employeeCount = 0;
         clientCount = 0;
         rating = 0;
-        totalMoney = new BigDecimal("0");
-        interestRate = new BigDecimal("0");
+        totalMoney = 0;
+        interestRate = 0;
     }
 
     public Bank() {
@@ -46,7 +46,7 @@ public class Bank {
     }
 
     public Bank(String name, int officeCount, int atmCount, int employeeCount, int clientCount,
-                byte rating, BigDecimal totalMoney, BigDecimal interestRate) {
+                byte rating, double  totalMoney, double  interestRate) {
         initDefaults();
         this.name = name;
         this.officeCount = officeCount;
@@ -59,7 +59,7 @@ public class Bank {
     }
 
     public Bank(UUID id, String name, int officeCount, int atmCount, int employeeCount, int clientCount,
-                byte rating, BigDecimal totalMoney, BigDecimal interestRate) {
+                byte rating, double  totalMoney, double  interestRate) {
         this.id = id;
         this.name = name;
         this.officeCount = officeCount;
@@ -139,19 +139,19 @@ public class Bank {
         this.rating = rating;
     }
 
-    public BigDecimal getTotalMoney() {
+    public double  getTotalMoney() {
         return this.totalMoney;
     }
 
-    public void setTotalMoney(BigDecimal totalMoney) {
+    public void setTotalMoney(double  totalMoney) {
         this.totalMoney = totalMoney;
     }
 
-    public BigDecimal getInterestRate() {
+    public double  getInterestRate() {
         return this.interestRate;
     }
 
-    public void setInterestRate(BigDecimal interestRate) {
+    public void setInterestRate(double  interestRate) {
         this.interestRate = interestRate;
     }
 

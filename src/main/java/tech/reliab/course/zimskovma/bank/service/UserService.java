@@ -8,5 +8,5 @@ import tech.reliab.course.zimskovma.bank.entity.User;
 public interface UserService {
     User create(User user);
 
-    BigDecimal calculateCreditRating(User user);
+    double calculateCreditRating(User user);
 }

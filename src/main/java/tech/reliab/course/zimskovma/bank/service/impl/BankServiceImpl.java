@@ -19,31 +19,27 @@ public class BankServiceImpl implements BankService {
 
         final Random random = new Random();
 
-        newBank.setRating((byte) random.nextInt(Bank.MAX_RATING.intValue() + 1));
-        BigDecimal rand = BigDecimal.valueOf(Math.random());
-        newBank.setTotalMoney(rand.multiply(Bank.MAX_TOTAL_MONEY));
+        newBank.setRating((byte) random.nextInt((int) (Bank.MAX_RATING + 1)));
+        newBank.setTotalMoney(random.nextDouble() * Bank.MAX_TOTAL_MONEY);
         calculateInterestRate(newBank);
 
         return newBank;
     }
 
     @Override
-    public BigDecimal calculateInterestRate(Bank bank) {
+    public double calculateInterestRate(Bank bank) {
         if (bank != null) {
-            final BigDecimal rating = BigDecimal.valueOf(bank.getRating());
+            final Random random = new Random();
+            final byte rating = bank.getRating();
 
-            BigDecimal rand_1 = BigDecimal.valueOf(Math.random());
-            final BigDecimal centralBankInterestRate = rand_1.multiply(Bank.MAX_INTEREST_RATE);
-            final BigDecimal maxBankInterestRateMargin = Bank.MAX_INTEREST_RATE.subtract(centralBankInterestRate);
-
-            BigDecimal rand_2 = BigDecimal.valueOf(Math.random());
-            final BigDecimal bankInterestRateMargin = rand_2.multiply(maxBankInterestRateMargin)
-                    .multiply((new BigDecimal("110").subtract(rating).divide(new BigDecimal("100"))));
-            final BigDecimal interestRate = centralBankInterestRate.add(bankInterestRateMargin);
+            final double centralBankInterestRate = random.nextDouble() * bank.MAX_INTEREST_RATE;
+            final double maxBankInterestRateMargin = bank.MAX_INTEREST_RATE - centralBankInterestRate;
+            final double bankInterestRateMargin = (random.nextDouble() * maxBankInterestRateMargin) * ((double) (110 - rating) / 100);
+            final double interestRate = centralBankInterestRate + bankInterestRateMargin;
 
             bank.setInterestRate(interestRate);
             return interestRate;
         }
-        return new BigDecimal("0");
+        return 0;
     }
 }

@@ -12,7 +12,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
             return null;
         }
 
-        if (bankOffice.getTotalMoney().signum() < 0) {
+        if (bankOffice.getTotalMoney() < 0) {
             System.err.println("Error: BankOffice - total money must be non-negative");
             return null;
         }
@@ -22,7 +22,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
             return null;
         }
 
-        if (bankOffice.getRentPrice().signum() < 0) {
+        if (bankOffice.getRentPrice() < 0) {
             System.err.println("Error: BankOffice - rentPrice must be non-negative");
             return null;
         }

@@ -5,15 +5,15 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class User {
-    public static final BigDecimal MAX_MONTHLY_INCOME = new BigDecimal("10000");
+    public static final double MAX_MONTHLY_INCOME = 10000;
 
     private UUID id;
     private String name;
     private LocalDate birthDate;
     private String placeOfWork;
-    private BigDecimal monthlyIncome;
+    private double monthlyIncome;
     private Bank bank;
-    private BigDecimal creditRating;
+    private double creditRating;
 
 
     private void initDefault() {
@@ -21,9 +21,9 @@ public class User {
         name = "No name";
         birthDate = null;
         placeOfWork = "No place of work";
-        monthlyIncome = new BigDecimal("0");
+        monthlyIncome = 0;
         bank = null;
-        creditRating = new BigDecimal("0");
+        creditRating = 0;
     }
 
     public User() {
@@ -47,8 +47,8 @@ public class User {
         this.bank = bank;
     }
 
-    public User(String name, LocalDate birthDate, String placeOfWork, BigDecimal monthlyIncome, Bank bank,
-                BigDecimal creditRating) {
+    public User(String name, LocalDate birthDate, String placeOfWork, double monthlyIncome, Bank bank,
+                double creditRating) {
         initDefault();
         this.name = name;
         this.birthDate = birthDate;
@@ -58,8 +58,8 @@ public class User {
         this.creditRating = creditRating;
     }
 
-    public User(UUID id, String name, LocalDate birthDate, String placeOfWork, BigDecimal monthlyIncome, Bank bank,
-                BigDecimal creditRating) {
+    public User(UUID id, String name, LocalDate birthDate, String placeOfWork, double monthlyIncome, Bank bank,
+                double creditRating) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
@@ -111,11 +111,11 @@ public class User {
         this.placeOfWork = placeOfWork;
     }
 
-    public BigDecimal getMonthlyIncome() {
+    public double getMonthlyIncome() {
         return this.monthlyIncome;
     }
 
-    public void setMonthlyIncome(BigDecimal monthlyIncome) {
+    public void setMonthlyIncome(double monthlyIncome) {
         this.monthlyIncome = monthlyIncome;
     }
 
@@ -127,11 +127,11 @@ public class User {
         this.bank = bank;
     }
 
-    public BigDecimal getCreditRating() {
+    public double getCreditRating() {
         return this.creditRating;
     }
 
-    public void setCreditRating(BigDecimal creditRating) {
+    public void setCreditRating(double creditRating) {
         this.creditRating = creditRating;
     }
 
