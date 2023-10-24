@@ -224,7 +224,7 @@ public class BankOffice {
         return  "Банковский офис №" + getId() + "'" +
                 ",\n Название офиса ='" + getName() + "'" +
                 ",\n Адрес ='" + getAddress() + "'" +
-                ",\n Банк='" + getBank() + "'" +
+                ",\n Банк='" + this.bank.getName() + "'" +
                 ",\n Статус работы ='" + isIsWorking() + "'" +
                 ",\n Можно ли разместить банкомат ='" + isIsAtmPlaceable() + "'" +
                 ",\n Кол-во банкоматов в данном офисе ='" + getAtmCount() + "'" +
