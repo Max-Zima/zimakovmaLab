@@ -64,7 +64,7 @@ public class Main {
 
         PaymentAccountService paymentAccountService = new PaymentAccountServiceImpl();
         PaymentAccount paymentAccount = paymentAccountService
-                .create(new PaymentAccount(user, bank, new BigDecimal("1000000")));
+                .create(new PaymentAccount(user, bank, 1000000));
         System.out.println(paymentAccount);
 
         CreditAccountService creditAccountService = new CreditAccountServiceImpl();
