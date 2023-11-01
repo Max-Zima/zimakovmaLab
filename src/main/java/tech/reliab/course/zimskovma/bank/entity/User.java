@@ -137,7 +137,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "Клиент банка" + getBank() +
+        return "Клиент банка" + this.bank.getName()  +
                 ",\n ФИО='" + getName() + "'" +
                 ",\n Дата рождения ='" + getBirthDate() + "'" +
                 ",\n Место работы='" + getPlaceOfWork() + "'" +

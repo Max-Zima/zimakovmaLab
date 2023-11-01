@@ -183,7 +183,7 @@ public class CreditAccount extends Account{
                 ",\n Оставшаяся сумма кредита='" + getRemainingCreditAmount() + "'" +
                 ",\n Сумма ежемесячного платежа='" + getMonthlyPayment() + "'" +
                 ",\n Процентная ставка='" + getInterestRate() + "'" +
-                ",\n Сотрудник, который выдал кредит='" + getEmployee() + "'" +
+                ",\n Сотрудник, который выдал кредит='" + this.employee.getName() + "'" +
                 ",\n Платежный счет='" + getPaymentAccount() + "'" + "\n";
     }
 }

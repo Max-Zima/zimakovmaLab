@@ -174,12 +174,12 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Сотрудник банка " + getBank() +
+        return "Сотрудник банка " + this.bank.getName()  +
                 ",\n ФИО ='" + getName() + "'" +
                 ",\n Дата рождения ='" + getBirthDate() + "'" +
                 ",\n Должность ='" + getJob() + "'" +
                 ",\n Работает ли в банковском офисе или удаленно? ='" + isIsWorkingFromHome() + "'" +
-                ",\n Банковский офис, в котором работает ='" + getBankOffice() + "'" +
+                ",\n Банковский офис, в котором работает ='" + this.bankOffice.getName() + "'" +
                 ",\n Может ли выдавать кредиты?='" + isIsCreditAvailable() + "'" +
                 ",\n  Размер зарплаты ='" + getSalary() + "'" + "\n";
     }

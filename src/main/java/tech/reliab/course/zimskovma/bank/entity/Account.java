@@ -73,6 +73,6 @@ public class Account {
         return "аккаунт" +
                 "\n id аккаунта ='" + getId() + "'" +
                 ",\n Имя клиента ='" + getClient() + "'" +
-                ",\n Банк ='" + getBank() + "'" + "\n";
+                ",\n Банк ='" + this.bank.getName()  + "'" + "\n";
     }
 }
