@@ -209,8 +209,8 @@ public class BankAtm {
                 ",\n Адрес='" + getAddress() + "'" +
                 ",\n Статус состояния='" + getStatus() + "'" +
                 ",\n Банк, которому принадлжеит банокмат ='" + this.bank.getName() + "'" +
-                ",\n Расположение банкомата='" + getBankOffice() + "'" +
-                ",\n Обслуживающий сотрудник='" + getEmployee() + "'" +
+                ",\n Расположение банкомата='" + this.bankOffice.getAddress() + "'" +
+                ",\n Обслуживающий сотрудник='" + this.employee.getName() + "'" +
                 ",\n Выдаёт деньги ='" + isIsCashWithdrawalAvailable() + "'" +
                 ",\n Принимает деньги ='" + isIsCashDepositAvailable() + "'" +
                 ",\n Кол-во денег в банкомате='" + String.format("%.2f", getTotalMoney()) + "'" +

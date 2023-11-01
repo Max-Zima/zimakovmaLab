@@ -175,8 +175,8 @@ public class CreditAccount extends Account{
 
     @Override
     public String toString() {
-        return  "Кредитный '" + super.toString() + "'" +
-                ",\n Дата начала кредита ='" + getDateStart() + "'" +
+        return  "Кредитный " + super.toString() +
+                " Дата начала кредита ='" + getDateStart() + "'" +
                 ",\n Дата окончания кредита ='" + getDateEnd() + "'" +
                 ",\n Срок кредита ='" + getMonthCount() + "'" + " мес. " +
                 ",\n Сумма кредита='" + String.format("%.2f", getCreditAmount())  + "'" +
@@ -184,6 +184,6 @@ public class CreditAccount extends Account{
                 ",\n Сумма ежемесячного платежа='" + String.format("%.2f", getMonthlyPayment())  + "'" +
                 ",\n Процентная ставка='" + String.format("%.2f", getInterestRate())  + "'" +
                 ",\n Сотрудник, который выдал кредит='" + this.employee.getName() + "'" +
-                ",\n Платежный счет='" + getPaymentAccount() + "'" + "\n";
+                ",\n Платежный счет='" + this.paymentAccount.getBalance() + "'" + "\n";
     }
 }

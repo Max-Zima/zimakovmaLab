@@ -72,7 +72,7 @@ public class Account {
     public String toString() {
         return "аккаунт" +
                 "\n id аккаунта ='" + getId() + "'" +
-                ",\n Имя клиента ='" + getClient() + "'" +
-                ",\n Банк ='" + this.bank.getName()  + "'" + "\n";
+                ",\n Имя клиента ='" + this.user.getName() + "'" +
+                ",\n Банк = '" + this.bank.getName()  + "'" + "\n";
     }
 }
