@@ -178,7 +178,7 @@ public class CreditAccount extends Account{
         return  "Кредитный " + super.toString() +
                 " Дата начала кредита ='" + getDateStart() + "'" +
                 ",\n Дата окончания кредита ='" + getDateEnd() + "'" +
-                ",\n Срок кредита ='" + getMonthCount() + "'" + " мес. " +
+                ",\n Срок кредита ='" + getMonthCount() + "'" + " мес." +
                 ",\n Сумма кредита='" + String.format("%.2f", getCreditAmount())  + "'" +
                 ",\n Оставшаяся сумма кредита='" + String.format("%.2f", getRemainingCreditAmount())  + "'" +
                 ",\n Сумма ежемесячного платежа='" + String.format("%.2f", getMonthlyPayment())  + "'" +
