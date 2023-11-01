@@ -222,7 +222,7 @@ public class BankOffice {
     @Override
     public String toString() {
         return  "Банковский офис №" + getId() +
-                ",\n Название офиса ='" + getName() + "'" +
+                "\n Название офиса ='" + getName() + "'" +
                 ",\n Адрес ='" + getAddress() + "'" +
                 ",\n Банк='" + this.bank.getName() + "'" +
                 ",\n Статус работы ='" + isIsWorking() + "'" +

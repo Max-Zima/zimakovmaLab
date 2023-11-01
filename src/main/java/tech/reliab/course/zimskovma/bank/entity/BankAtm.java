@@ -205,7 +205,7 @@ public class BankAtm {
     @Override
     public String toString() {
         return "Банкома №" + getId() + "'" +
-                ",\n Название='" + getName() + "'" +
+                "\n Название='" + getName() + "'" +
                 ",\n Адрес='" + getAddress() + "'" +
                 ",\n Статус состояния='" + getStatus() + "'" +
                 ",\n Банк, которому принадлжеит банокмат ='" + this.bank.getName() + "'" +
