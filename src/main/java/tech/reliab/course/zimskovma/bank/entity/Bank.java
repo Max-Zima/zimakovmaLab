@@ -157,7 +157,7 @@ public class Bank {
 
     @Override
     public String toString() {
-        return "Банк" + getName() + "'" +
+        return "Банк" + getName()  +
                 ",\n Кол-во офисов ='" + getOfficeCount() + "'" +
                 ",\n Кол-во банкоматов ='" + getAtmCount() + "'" +
                 ",\n Кол-во сотрудников ='" + getEmployeeCount() + "'" +
