@@ -163,7 +163,7 @@ public class Bank {
                 ",\n Кол-во сотрудников ='" + getEmployeeCount() + "'" +
                 ",\n Кол-во клиентов ='" + getClientCount() + "'" +
                 ",\n Рейтинг банка ='" + getRating() + "'" +
-                ",\n Всего денег ='" + getTotalMoney() + "'" +
-                ",\n Процентная ставка ='" + getInterestRate() + "'" + "\n";
+                ",\n Всего денег ='" + String.format("%.2f", getTotalMoney()) + "'" +
+                ",\n Процентная ставка ='" + String.format("%.2f", getInterestRate()) + "'" + "\n";
     }
 }

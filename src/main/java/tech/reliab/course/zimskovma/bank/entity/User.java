@@ -141,7 +141,7 @@ public class User {
                 ",\n ФИО='" + getName() + "'" +
                 ",\n Дата рождения ='" + getBirthDate() + "'" +
                 ",\n Место работы='" + getPlaceOfWork() + "'" +
-                ",\n Ежемесячный доход='" + getMonthlyIncome() + "'" +
-                ",\n Кредитный рейтинг для банка='" + getCreditRating() + "'" + "\n";
+                ",\n Ежемесячный доход='" + String.format("%.2f", getMonthlyIncome()) + "'" +
+                ",\n Кредитный рейтинг для банка='" + String.format("%.2f", getCreditRating()) + "'" + "\n";
     }
 }

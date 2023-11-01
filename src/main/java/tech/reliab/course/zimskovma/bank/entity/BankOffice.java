@@ -232,6 +232,6 @@ public class BankOffice {
                 ",\n Работает ли на выдачу денег?='" + isIsCashWithdrawalAvailable() + "'" +
                 ",\n Можно ли внести деньги?='" + isIsCashDepositAvailable() + "'" +
                 ",\n Кол-во денег в банковском офисе ='" + getTotalMoney() + "'" +
-                ",\n Стоимость аренды банковского офиса='" + getRentPrice() + "'" + "\n";
+                ",\n Стоимость аренды банковского офиса='" +  String.format("%.2f", getRentPrice()) + "'" + "\n";
     }
 }

@@ -56,7 +56,7 @@ public class PaymentAccount extends Account {
     @Override
     public String toString() {
         return "Платёжный " + super.toString() + "'" +
-                ",\n Баланс ='" + getBalance() + "'" +
+                ",\n Баланс ='" + String.format("%.2f", getBalance()) + "'" +
                 "\n}";
     }
 }

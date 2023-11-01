@@ -213,7 +213,7 @@ public class BankAtm {
                 ",\n Обслуживающий сотрудник='" + getEmployee() + "'" +
                 ",\n Выдаёт деньги ='" + isIsCashWithdrawalAvailable() + "'" +
                 ",\n Принимает деньги ='" + isIsCashDepositAvailable() + "'" +
-                ",\n Кол-во денег в банкомате='" + getTotalMoney() + "'" +
-                ",\n Стоимость обслуживания банкомата='" + getMaintenanceCost() + "'" + "\n";
+                ",\n Кол-во денег в банкомате='" + String.format("%.2f", getTotalMoney()) + "'" +
+                ",\n Стоимость обслуживания банкомата='" + String.format("%.2f", getMaintenanceCost())  + "'" + "\n";
     }
 }

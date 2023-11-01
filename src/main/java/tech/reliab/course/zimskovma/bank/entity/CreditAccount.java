@@ -179,10 +179,10 @@ public class CreditAccount extends Account{
                 ",\n Дата начала кредита ='" + getDateStart() + "'" +
                 ",\n Дата окончания кредита ='" + getDateEnd() + "'" +
                 ",\n Срок кредита ='" + getMonthCount() + "'" + " мес. " +
-                ",\n Сумма кредита='" + getCreditAmount() + "'" +
-                ",\n Оставшаяся сумма кредита='" + getRemainingCreditAmount() + "'" +
-                ",\n Сумма ежемесячного платежа='" + getMonthlyPayment() + "'" +
-                ",\n Процентная ставка='" + getInterestRate() + "'" +
+                ",\n Сумма кредита='" + String.format("%.2f", getCreditAmount())  + "'" +
+                ",\n Оставшаяся сумма кредита='" + String.format("%.2f", getRemainingCreditAmount())  + "'" +
+                ",\n Сумма ежемесячного платежа='" + String.format("%.2f", getMonthlyPayment())  + "'" +
+                ",\n Процентная ставка='" + String.format("%.2f", getInterestRate())  + "'" +
                 ",\n Сотрудник, который выдал кредит='" + this.employee.getName() + "'" +
                 ",\n Платежный счет='" + getPaymentAccount() + "'" + "\n";
     }

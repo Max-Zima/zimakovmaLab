@@ -181,6 +181,6 @@ public class Employee {
                 ",\n Работает ли в банковском офисе или удаленно? ='" + isIsWorkingFromHome() + "'" +
                 ",\n Банковский офис, в котором работает ='" + this.bankOffice.getName() + "'" +
                 ",\n Может ли выдавать кредиты?='" + isIsCreditAvailable() + "'" +
-                ",\n  Размер зарплаты ='" + getSalary() + "'" + "\n";
+                ",\n  Размер зарплаты ='" + String.format("%.2f", getSalary()) + "'" + "\n";
     }
 }
