@@ -1,16 +1,14 @@
 package tech.reliab.course.zimskovma.bank.entity;
 
+import tech.reliab.course.zimskovma.bank.utils.Job;
+
 import java.time.LocalDate;
-import java.math.BigDecimal;
-import java.util.UUID;
+import java.time.format.DateTimeFormatter;
 
 public class Employee {
-    public enum Job {
-        Manager,
-        Worker
-    }
+    private static int currentId = 0;
 
-    private UUID id;
+    protected int id;
     private String name;
     private LocalDate birthDate;
     private Job job;
@@ -20,8 +18,11 @@ public class Employee {
     private boolean isCreditAvailable;
     private double  salary;
 
+    private void initializeId() {
+        this.id = currentId++;
+    }
+
     private void initDefault() {
-        id = UUID.randomUUID();
         name = "No name";
         birthDate = null;
         job = null;
@@ -33,21 +34,26 @@ public class Employee {
     }
 
     public Employee() {
+        initializeId();
         initDefault();
+
     }
 
     public Employee(String name) {
+        initializeId();
         initDefault();
         this.name = name;
     }
 
     public Employee(String name, LocalDate birthDate) {
+        initializeId();
         initDefault();
         this.name = name;
         this.birthDate = birthDate;
     }
 
     public Employee(String name, Bank bank, BankOffice bankOffice) {
+        initializeId();
         initDefault();
         this.name = name;
         this.bank = bank;
@@ -56,6 +62,7 @@ public class Employee {
 
     public Employee(String name, LocalDate birthDate, Job job, Bank bank, boolean isWorkingFromHome,
                     BankOffice bankOffice, boolean isCreditAvailable, double salary) {
+        initializeId();
         initDefault();
         this.name = name;
         this.birthDate = birthDate;
@@ -67,7 +74,7 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Employee(UUID id, String name, LocalDate birthDate, Job job, Bank bank, boolean isWorkingFromHome,
+    public Employee(int id, String name, LocalDate birthDate, Job job, Bank bank, boolean isWorkingFromHome,
                     BankOffice bankOffice, boolean isCreditAvailable, double salary) {
         this.id = id;
         this.name = name;
@@ -92,11 +99,11 @@ public class Employee {
         this.salary = employee.salary;
     }
 
-    public UUID getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -175,12 +182,12 @@ public class Employee {
     @Override
     public String toString() {
         return "Сотрудник банка " + this.bank.getName()  +
-                "\n ФИО ='" + getName() + "'" +
-                ",\n Дата рождения ='" + getBirthDate() + "'" +
-                ",\n Должность ='" + getJob() + "'" +
-                ",\n Работает ли в банковском офисе или удаленно? ='" + isIsWorkingFromHome() + "'" +
-                ",\n Банковский офис, в котором работает ='" + this.bankOffice.getName() + "'" +
-                ",\n Может ли выдавать кредиты?='" + isIsCreditAvailable() + "'" +
-                ",\n Размер зарплаты ='" + String.format("%.2f", getSalary()) + "'" + "\n";
+                "\n ФИО = " + getName() +
+                ",\n Дата рождения = " + getBirthDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))  +
+                ",\n Должность = " + getJob() +
+                ",\n Работает ли в банковском офисе или удаленно? " + isIsWorkingFromHome() +
+                ",\n Банковский офис, в котором работает = " + this.bankOffice.getName() +
+                ",\n Может ли выдавать кредиты? " + isIsCreditAvailable() +
+                ",\n Размер зарплаты = " + String.format("%.2f", getSalary()) + "\n";
     }
 }

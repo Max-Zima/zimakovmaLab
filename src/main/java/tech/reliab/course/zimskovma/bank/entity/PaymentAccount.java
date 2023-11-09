@@ -1,8 +1,5 @@
 package tech.reliab.course.zimskovma.bank.entity;
 
-import java.math.BigDecimal;
-import java.util.UUID;
-
 public class PaymentAccount extends Account {
     private double  balance;
 
@@ -15,7 +12,7 @@ public class PaymentAccount extends Account {
         initDefault();
     }
 
-    public PaymentAccount(UUID id, User user) {
+    public PaymentAccount(int id, User user) {
         super(id, user);
         initDefault();
     }
@@ -25,7 +22,7 @@ public class PaymentAccount extends Account {
         initDefault();
     }
 
-    public PaymentAccount(UUID id, User user, Bank bank) {
+    public PaymentAccount(int id, User user, Bank bank) {
         super(id, user, bank);
         initDefault();
     }
@@ -35,7 +32,7 @@ public class PaymentAccount extends Account {
         this.balance = balance;
     }
 
-    public PaymentAccount(UUID id, User user, Bank bank, double balance) {
+    public PaymentAccount(int id, User user, Bank bank, double balance) {
         super(id, user, bank);
         this.balance = balance;
     }
@@ -56,6 +53,6 @@ public class PaymentAccount extends Account {
     @Override
     public String toString() {
         return "Платёжный " + super.toString()  +
-                " Баланс ='" + String.format("%.2f", getBalance()) + "'" +  "\n";
+                " Баланс = " + String.format("%.2f", getBalance()) +  "\n";
     }
 }

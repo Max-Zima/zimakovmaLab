@@ -1,8 +1,7 @@
 package tech.reliab.course.zimskovma.bank.entity;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
+import java.time.format.DateTimeFormatter;
 
 public class CreditAccount extends Account{
     private LocalDate dateStart;
@@ -14,6 +13,7 @@ public class CreditAccount extends Account{
     private double  interestRate;
     private Employee employee;
     private PaymentAccount paymentAccount;
+
 
     private void initDefault() {
         dateStart = null;
@@ -36,7 +36,7 @@ public class CreditAccount extends Account{
         super(user);
         initDefault();
     }
-    public CreditAccount(UUID id, User user) {
+    public CreditAccount(int id, User user) {
         super(id, user);
         initDefault();
     }
@@ -46,7 +46,7 @@ public class CreditAccount extends Account{
         initDefault();
     }
 
-    public CreditAccount(UUID id, User user, Bank bank) {
+    public CreditAccount(int id, User user, Bank bank) {
         super(id, user, bank);
         initDefault();
     }
@@ -73,7 +73,7 @@ public class CreditAccount extends Account{
         this.paymentAccount = paymentAccount;
     }
 
-    public CreditAccount(UUID id, User user, Bank bank, LocalDate dateStart, LocalDate dateEnd, int monthCount,
+    public CreditAccount(int id, User user, Bank bank, LocalDate dateStart, LocalDate dateEnd, int monthCount,
                          double  creditAmount, double  remainingCreditAmount, double  montlyPayment,
                          double  interestRate, Employee employee, PaymentAccount paymentAccount) {
         super(id, user, bank);
@@ -176,14 +176,14 @@ public class CreditAccount extends Account{
     @Override
     public String toString() {
         return  "Кредитный " + super.toString() +
-                " Дата начала кредита ='" + getDateStart() + "'" +
-                ",\n Дата окончания кредита ='" + getDateEnd() + "'" +
-                ",\n Срок кредита ='" + getMonthCount() + "'" + " мес." +
-                ",\n Сумма кредита='" + String.format("%.2f", getCreditAmount())  + "'" +
-                ",\n Оставшаяся сумма кредита='" + String.format("%.2f", getRemainingCreditAmount())  + "'" +
-                ",\n Сумма ежемесячного платежа='" + String.format("%.2f", getMonthlyPayment())  + "'" +
-                ",\n Процентная ставка='" + String.format("%.2f", getInterestRate())  + "'" +
-                ",\n Сотрудник, который выдал кредит='" + this.employee.getName() + "'" +
-                ",\n Платежный счет='" + this.paymentAccount.getBalance() + "'" + "\n";
+                " Дата начала кредита = " + getDateStart().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) +
+                ",\n Дата окончания кредита = " + getDateEnd().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) +
+                ",\n Срок кредита = " + getMonthCount() + " мес." +
+                ",\n Сумма кредита = " + String.format("%.2f", getCreditAmount()) +
+                ",\n Оставшаяся сумма кредита = " + String.format("%.2f", getRemainingCreditAmount()) +
+                ",\n Сумма ежемесячного платежа = " + String.format("%.2f", getMonthlyPayment()) +
+                ",\n Процентная ставка = " + String.format("%.2f", getInterestRate()) +
+                ",\n Сотрудник, который выдал кредит = " + this.employee.getName() +
+                ",\n Платежный счет = " + this.paymentAccount.getBalance() + "\n";
     }
 }

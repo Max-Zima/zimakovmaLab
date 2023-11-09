@@ -1,11 +1,33 @@
 package tech.reliab.course.zimskovma.bank.service.impl;
 
 import java.math.BigDecimal;
+import java.util.*;
 
 import tech.reliab.course.zimskovma.bank.entity.CreditAccount;
 import tech.reliab.course.zimskovma.bank.service.CreditAccountService;
+import tech.reliab.course.zimskovma.bank.service.UserService;
 
 public class CreditAccountServiceImpl implements CreditAccountService {
+    Map<Integer, CreditAccount> creditAccountsTable = new HashMap<Integer, CreditAccount>();
+    private final UserService userService;
+
+    public CreditAccountServiceImpl(UserService userService) {
+        this.userService = userService;
+    }
+
+    @Override
+    public List<CreditAccount> getAllCreditAccounts() {
+        return new ArrayList<CreditAccount>(creditAccountsTable.values());
+    }
+
+    @Override
+    public CreditAccount getCreditAccountById(int id) {
+        CreditAccount account = creditAccountsTable.get(id);
+        if (account == null) {
+            System.err.println("Credit account id =" + id + " is not found");
+        }
+        return account;
+    }
 
     @Override
     public CreditAccount create(CreditAccount creditAccount) {
@@ -13,22 +35,11 @@ public class CreditAccountServiceImpl implements CreditAccountService {
             return null;
         }
 
-//        if (creditAccount.getMonthCount() < 1) {
-//            System.err.println("Error: CreditAccount - monthCount must be at least 1");
-//            return null;
-//        }
+        CreditAccount newAccount = new CreditAccount(creditAccount);
+        creditAccountsTable.put(newAccount.getId(), newAccount);
+        userService.addCreditAccount(newAccount.getClient().getId(), newAccount);
 
-//        if (creditAccount.getCreditAmount().signum() <= 0) {
-//            System.err.println("Error: CreditAccount - creditAmount doesn't be negative");
-//            return null;
-//        }
-//
-//        if (creditAccount.getBank() == null) {
-//            System.err.println("Error: CreditAccount - creditAmount haven't bank");
-//            return null;
-//        }
-
-        return new CreditAccount(creditAccount);
+        return newAccount;
     }
 
 }

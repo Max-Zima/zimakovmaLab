@@ -1,13 +1,13 @@
 package tech.reliab.course.zimskovma.bank.entity;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
+import java.time.format.DateTimeFormatter;
 
 public class User {
     public static final double MAX_MONTHLY_INCOME = 10000;
+    private static int currentId = 0;
 
-    private UUID id;
+    protected int id;
     private String name;
     private LocalDate birthDate;
     private String placeOfWork;
@@ -15,9 +15,11 @@ public class User {
     private Bank bank;
     private double creditRating;
 
+    private void initializeId() {
+        this.id = currentId++;
+    }
 
     private void initDefault() {
-        id = UUID.randomUUID();
         name = "No name";
         birthDate = null;
         placeOfWork = "No place of work";
@@ -27,21 +29,26 @@ public class User {
     }
 
     public User() {
+
+        initializeId();
         initDefault();
     }
 
     public User(String name) {
+        initializeId();
         initDefault();
         this.name = name;
     }
 
     public User(String name, LocalDate birthDate) {
+        initializeId();
         initDefault();
         this.name = name;
         this.birthDate = birthDate;
     }
 
     public User(String name, Bank bank) {
+        initializeId();
         initDefault();
         this.name = name;
         this.bank = bank;
@@ -49,6 +56,7 @@ public class User {
 
     public User(String name, LocalDate birthDate, String placeOfWork, double monthlyIncome, Bank bank,
                 double creditRating) {
+        initializeId();
         initDefault();
         this.name = name;
         this.birthDate = birthDate;
@@ -58,7 +66,7 @@ public class User {
         this.creditRating = creditRating;
     }
 
-    public User(UUID id, String name, LocalDate birthDate, String placeOfWork, double monthlyIncome, Bank bank,
+    public User(int id, String name, LocalDate birthDate, String placeOfWork, double monthlyIncome, Bank bank,
                 double creditRating) {
         this.id = id;
         this.name = name;
@@ -79,11 +87,11 @@ public class User {
         this.creditRating = user.creditRating;
     }
 
-    public UUID getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -138,10 +146,10 @@ public class User {
     @Override
     public String toString() {
         return "Клиент банка" + this.bank.getName()  +
-                "\n ФИО='" + getName() + "'" +
-                ",\n Дата рождения ='" + getBirthDate() + "'" +
-                ",\n Место работы='" + getPlaceOfWork() + "'" +
-                ",\n Ежемесячный доход='" + String.format("%.2f", getMonthlyIncome()) + "'" +
-                ",\n Кредитный рейтинг для банка='" + String.format("%.2f", getCreditRating()) + "'" + "\n";
+                "\n ФИО = " + getName() +
+                ",\n Дата рождения = " + getBirthDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))  +
+                ",\n Место работы = " + getPlaceOfWork() +
+                ",\n Ежемесячный доход = " + String.format("%.2f", getMonthlyIncome()) +
+                ",\n Кредитный рейтинг для банка = " + String.format("%.2f", getCreditRating()) + "\n";
     }
 }
