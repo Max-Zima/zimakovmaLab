@@ -136,4 +136,14 @@ public class BankServiceImpl implements BankService {
         }
         return false;
     }
+
+    @Override
+    public boolean addEmployee(Bank bank, Employee employee) {
+        if (bank != null && employee != null) {
+            employee.setBank(bank);
+            bank.setEmployeeCount(bank.getEmployeeCount() + 1);
+            return true;
+        }
+        return false;
+    }
 }

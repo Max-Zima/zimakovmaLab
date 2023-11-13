@@ -2,6 +2,7 @@ package tech.reliab.course.zimskovma.bank.service;
 
 import tech.reliab.course.zimskovma.bank.entity.Bank;
 import tech.reliab.course.zimskovma.bank.entity.BankOffice;
+import tech.reliab.course.zimskovma.bank.entity.Employee;
 import tech.reliab.course.zimskovma.bank.entity.User;
 
 import java.util.List;
@@ -27,4 +28,6 @@ public interface BankService {
     boolean addOffice(int bankId, BankOffice bankOffice);
 
     boolean addUser(int id, User user);
+
+    boolean addEmployee(Bank bank, Employee employee);
 }

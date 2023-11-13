@@ -14,7 +14,7 @@ import tech.reliab.course.zimskovma.bank.service.BankService;
 public class BankOfficeServiceImpl implements BankOfficeService {
 
     Map<Integer, BankOffice> bankOfficesTable  = new HashMap<Integer, BankOffice>();
-    Map<Integer, List<Employee>> employeByOfficeIdTable   = new HashMap<Integer, List<Employee>>();
+    Map<Integer, List<Employee>> employeeByOfficeIdTable   = new HashMap<Integer, List<Employee>>();
     Map<Integer, List<BankAtm>> atmByOfficeIdTable   = new HashMap<Integer, List<BankAtm>>();
 
     private final BankService bankService;
@@ -25,7 +25,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
 
     @Override
     public List<Employee> getAllEmployeesByOfficeId(int id) {
-        return employeByOfficeIdTable.get(id);
+        return employeeByOfficeIdTable.get(id);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
 
         BankOffice newOffice = new BankOffice(bankOffice);
         bankOfficesTable.put(bankOffice.getId(), bankOffice);
-        employeByOfficeIdTable.put(bankOffice.getId(), new ArrayList<>());
+        employeeByOfficeIdTable.put(bankOffice.getId(), new ArrayList<>());
         atmByOfficeIdTable.put(bankOffice.getId(), new ArrayList<>());
         bankService.addOffice(bankOffice.getBank().getId(), bankOffice);
 
@@ -117,9 +117,10 @@ public class BankOfficeServiceImpl implements BankOfficeService {
     public boolean addEmployee(int id, Employee employee) {
         BankOffice bankOffice = getBankOfficeById(id);
         if (bankOffice != null && employee != null) {
+            bankOffice.getBank().setEmployeeCount(bankOffice.getBank().getEmployeeCount() + 1);
             employee.setBankOffice(bankOffice);
             employee.setBank(bankOffice.getBank());
-            List<Employee> officeEmployees = employeByOfficeIdTable.get(bankOffice.getId());
+            List<Employee> officeEmployees = employeeByOfficeIdTable.get(bankOffice.getId());
             officeEmployees.add(employee);
             return true;
         }

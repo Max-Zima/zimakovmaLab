@@ -33,8 +33,6 @@ import tech.reliab.course.zimskovma.bank.utils.Job;
 public class Main {
     public static void main(String[] args) {
         Random random = new Random();
-        new Consts();
-
         BankService bankService = new BankServiceImpl();
         BankOfficeService bankOfficeService = new BankOfficeServiceImpl(bankService);
         bankService.setBankOfficeService(bankOfficeService);
@@ -53,7 +51,7 @@ public class Main {
         List<Bank> banks = bankService.getAllBanks();
         for (Bank bank : banks) {
             for (int i = 1; i <= 3; i++) {
-                bankOfficeService.create(new BankOffice("Офис №" + i + " банка: " + bank.getName(), "г.Белгород, Гражданский проспект, " + String.valueOf(i  + random.nextInt(0, 50)), bank, true, true, 0, true, true, true, 20000, 100 * i));
+                bankOfficeService.create(new BankOffice("Офис №" + i + " банка: " + bank.getName(), "г.Белгород, Гражданский проспект, " + String.valueOf(i + random.nextInt(0, 50)), bank, true, true, 0, true, true, true, 20000, 100 * i));
             }
         }
 
@@ -85,7 +83,11 @@ public class Main {
 
         for (User user : users) {
             for (int i = 1; i <= 2; i++) {
-                List<BankOffice> bankOffices = bankService.getAllOfficesByBankId(user.getBank().getId());BankOffice randomOffice = bankOffices.get(random.nextInt(bankOffices.size()));List<Employee> officeEmployees = bankOfficeService.getAllEmployeesByOfficeId(randomOffice.getId());Employee randomEmployee = officeEmployees.get(random.nextInt(officeEmployees.size()));creditAccountService.create(new CreditAccount(user, user.getBank(), LocalDate.of(random.nextInt(2023, 2027), random.nextInt(1, 13), random.nextInt(1, 29)), LocalDate.of(2028, 12, 13), 60, random.nextInt(10000, 1000000), random.nextInt(10000, 1000000), random.nextInt(100, 100000), user.getBank().getInterestRate(), randomEmployee, userService.getAllPaymentAccountsByClientId(user.getId()).get(random.nextInt(userService.getAllPaymentAccountsByClientId(user.getId()).size()))));
+                List<BankOffice> bankOffices = bankService.getAllOfficesByBankId(user.getBank().getId());
+                BankOffice randomOffice = bankOffices.get(random.nextInt(bankOffices.size()));
+                List<Employee> officeEmployees = bankOfficeService.getAllEmployeesByOfficeId(randomOffice.getId());
+                Employee randomEmployee = officeEmployees.get(random.nextInt(officeEmployees.size()));
+                creditAccountService.create(new CreditAccount(user, user.getBank(), LocalDate.of(random.nextInt(2023, 2027), random.nextInt(1, 13), random.nextInt(1, 29)), LocalDate.of(2028, 12, 13), 60, random.nextInt(10000, 1000000), random.nextInt(10000, 1000000), random.nextInt(100, 100000), user.getBank().getInterestRate(), randomEmployee, userService.getAllPaymentAccountsByClientId(user.getId()).get(random.nextInt(userService.getAllPaymentAccountsByClientId(user.getId()).size()))));
             }
         }
 
