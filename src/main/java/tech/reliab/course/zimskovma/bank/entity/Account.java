@@ -1,7 +1,5 @@
 package tech.reliab.course.zimskovma.bank.entity;
 
-import java.util.UUID;
-
 public class Account {
     private static int currentId = 0;
 
@@ -51,7 +49,6 @@ public class Account {
         this.user = new User(account.user);
         this.bank = new Bank(account.bank);
     }
-
     public int getId() {
         return this.id;
     }
