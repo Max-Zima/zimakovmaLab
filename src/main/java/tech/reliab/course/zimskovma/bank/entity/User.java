@@ -2,6 +2,7 @@ package tech.reliab.course.zimskovma.bank.entity;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class User {
     public static final double MAX_MONTHLY_INCOME = 10000;
@@ -15,6 +16,10 @@ public class User {
     private Bank bank;
     private double creditRating;
 
+    private ArrayList<CreditAccount> creditAccounts;
+
+    private ArrayList<PaymentAccount> paymentAccounts;
+
     private void initializeId() {
         this.id = currentId++;
     }
@@ -26,6 +31,14 @@ public class User {
         monthlyIncome = 0;
         bank = null;
         creditRating = 0;
+    }
+
+    public ArrayList<CreditAccount> getCreditAccounts() {
+        return creditAccounts;
+    }
+
+    public ArrayList<PaymentAccount> getPaymentAccounts() {
+        return paymentAccounts;
     }
 
     public User() {
@@ -64,6 +77,8 @@ public class User {
         this.monthlyIncome = monthlyIncome;
         this.bank = bank;
         this.creditRating = creditRating;
+        this.creditAccounts = new ArrayList<CreditAccount>();
+        this.paymentAccounts = new ArrayList<PaymentAccount>();
     }
 
     public User(int id, String name, LocalDate birthDate, String placeOfWork, double monthlyIncome, Bank bank,
@@ -75,6 +90,8 @@ public class User {
         this.monthlyIncome = monthlyIncome;
         this.bank = bank;
         this.creditRating = creditRating;
+        this.creditAccounts = new ArrayList<CreditAccount>();
+        this.paymentAccounts = new ArrayList<PaymentAccount>();
     }
 
     public User(User user) {
@@ -85,6 +102,8 @@ public class User {
         this.monthlyIncome = user.monthlyIncome;
         this.bank = new Bank(user.bank);
         this.creditRating = user.creditRating;
+        this.creditAccounts = new ArrayList<CreditAccount>();
+        this.paymentAccounts = new ArrayList<PaymentAccount>();
     }
 
     public int getId() {

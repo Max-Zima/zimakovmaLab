@@ -1,5 +1,9 @@
 package tech.reliab.course.zimskovma.bank.entity;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class BankOffice {
     private static int currentId = 0;
 
@@ -15,6 +19,10 @@ public class BankOffice {
     private boolean isCashDepositAvailable;
     private double totalMoney;
     private double rentPrice;
+
+    List<Employee> lstEmployees = new ArrayList<Employee>();
+
+    List<BankAtm> lstBankAtm = new ArrayList<BankAtm>();
 
     private void initializeId() {
         this.id = currentId++;
@@ -32,6 +40,14 @@ public class BankOffice {
         isCashDepositAvailable = false;
         totalMoney = 0;
         rentPrice = 0;
+    }
+
+    public List<BankAtm> getLstBankAtm() {
+        return lstBankAtm;
+    }
+
+    public List<Employee> getLstEmployees() {
+        return lstEmployees;
     }
 
     public BankOffice() {
@@ -232,12 +248,12 @@ public class BankOffice {
                 "\n Название офиса = " + getName() +
                 ",\n Адрес = " + getAddress()  +
                 ",\n Банк = " + this.bank.getName() +
-                ",\n Статус работы = " + isIsWorking() +
-                ",\n Можно ли разместить банкомат = " + isIsAtmPlaceable() +
+                ",\n Статус работы = " + getIsWorking() +
+                ",\n Можно ли разместить банкомат = " + getIsAtmPlaceable() +
                 ",\n Кол-во банкоматов в данном офисе = " + getAtmCount() +
-                ",\n Можно ли оформить кредит в данном офисе? " + isIsCreditAvailable() +
-                ",\n Работает ли на выдачу денег? " + isIsCashWithdrawalAvailable() +
-                ",\n Можно ли внести деньги? " + isIsCashDepositAvailable() +
+                ",\n Можно ли оформить кредит в данном офисе? " + getIsCreditAvailable() +
+                ",\n Работает ли на выдачу денег? " + getIsCashWithdrawalAvailable() +
+                ",\n Можно ли внести деньги? " + getIsCashDepositAvailable() +
                 ",\n Кол-во денег в банковском офисе = " + getTotalMoney() +
                 ",\n Стоимость аренды банковского офиса = " +  String.format("%.2f", getRentPrice()) + "\n";
     }

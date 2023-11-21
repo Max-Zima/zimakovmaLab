@@ -124,6 +124,7 @@ public class BankServiceImpl implements BankService {
             bank.setTotalMoney(bank.getTotalMoney() + bankOffice.getTotalMoney());
             List<BankOffice> bankOffices = getAllOfficesByBankId(bankId);
             bankOffices.add(bankOffice);
+            officeByBankIdTable.get(bank.getId()).add(bankOffice);
             return true;
         }
         return false;
@@ -137,6 +138,7 @@ public class BankServiceImpl implements BankService {
             bank.setClientCount(bank.getClientCount() + 1);
             List<User> clients = userByBankIdTable.get(id);
             clients.add(user);
+            userByBankIdTable.get(bank.getId()).add(user);
             return true;
         }
         return false;

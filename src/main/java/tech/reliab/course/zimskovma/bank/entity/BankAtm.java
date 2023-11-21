@@ -214,8 +214,8 @@ public class BankAtm {
                 ",\n Банк, которому принадлжеит банокмат = " + this.bank.getName() +
                 ",\n Расположение банкомата = " + this.bankOffice.getAddress() +
                 ",\n Обслуживающий сотрудник = " + this.employee.getName()  +
-                ",\n Выдаёт деньги = " + isIsCashWithdrawalAvailable() +
-                ",\n Принимает деньги = " + isIsCashDepositAvailable() +
+                ",\n Выдаёт деньги = " + getIsCashWithdrawalAvailable() +
+                ",\n Принимает деньги = " + getIsCashDepositAvailable() +
                 ",\n Кол-во денег в банкомате = " + String.format("%.2f", getTotalMoney()) +
                 ",\n Стоимость обслуживания банкомата = " + String.format("%.2f", getMaintenanceCost()) + "\n";
     }

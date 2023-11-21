@@ -1,5 +1,8 @@
 package tech.reliab.course.zimskovma.bank.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bank {
     public static final double MAX_RATING = 100;
     public static final double MAX_TOTAL_MONEY = 1000000;
@@ -16,6 +19,10 @@ public class Bank {
     private double totalMoney;
     private double interestRate;
 
+    List<BankOffice> lstOffices = new ArrayList<BankOffice>();
+
+    List<User> lstUsers = new ArrayList<User>();
+
     private void initializeId() {
         this.id = currentId++;
     }
@@ -29,6 +36,14 @@ public class Bank {
         rating = 0;
         totalMoney = 0;
         interestRate = 0;
+    }
+
+    public List<User> getLstUsers() {
+        return lstUsers;
+    }
+
+    public List<BankOffice> getLstOffices() {
+        return lstOffices;
     }
 
     public Bank() {

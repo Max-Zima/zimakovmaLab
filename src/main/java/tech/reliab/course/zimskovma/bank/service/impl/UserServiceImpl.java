@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             List<CreditAccount> clientCreditAccounts = creditAccountsByClientIdTable.get(id);
             clientCreditAccounts.add(account);
+            creditAccountsByClientIdTable.get(id).add(account);
             return true;
         }
         return false;
@@ -61,6 +62,7 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             List<PaymentAccount> clientCreditAccounts = paymentAccountsByClientIdTable.get(id);
             clientCreditAccounts.add(account);
+            paymentAccountsByClientIdTable.get(id).add(account);
             return true;
         }
         return false;

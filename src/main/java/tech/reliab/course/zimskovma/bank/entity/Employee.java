@@ -185,9 +185,9 @@ public class Employee {
                 "\n ФИО = " + getName() +
                 ",\n Дата рождения = " + getBirthDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))  +
                 ",\n Должность = " + getJob() +
-                ",\n Работает ли в банковском офисе или удаленно? " + isIsWorkingFromHome() +
+                ",\n Работает ли в банковском офисе или удаленно? " + getIsWorkingFromHome() +
                 ",\n Банковский офис, в котором работает = " + this.bankOffice.getName() +
-                ",\n Может ли выдавать кредиты? " + isIsCreditAvailable() +
+                ",\n Может ли выдавать кредиты? " + getIsCreditAvailable() +
                 ",\n Размер зарплаты = " + String.format("%.2f", getSalary()) + "\n";
     }
 }

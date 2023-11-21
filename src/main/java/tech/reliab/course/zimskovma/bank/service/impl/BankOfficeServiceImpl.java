@@ -144,7 +144,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
             List<BankAtm> officeAtms = atmByOfficeIdTable.get(bankOffice.getId());
             officeAtms.add(bankAtm);
             addMoney(bankOffice, bankAtm.getTotalMoney());
-
+            atmByOfficeIdTable.get(bankOffice.getId()).add(bankAtm);
             return true;
         }
         return false;
@@ -159,6 +159,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
             employee.setBank(bankOffice.getBank());
             List<Employee> officeEmployees = employeeByOfficeIdTable.get(bankOffice.getId());
             officeEmployees.add(employee);
+            employeeByOfficeIdTable.get(bankOffice.getId()).add(employee);
             return true;
         }
         return false;
