@@ -11,4 +11,7 @@ public interface AtmService {
 
     public List<BankAtm> getAllBankAtms();
 
+    boolean isAtmSuitable(BankAtm bankAtm, double money);
+
+    boolean addMoney(BankAtm bankAtm, double amount);
 }

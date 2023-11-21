@@ -16,6 +16,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public boolean isEmployeeSuitable(Employee employee) {
+        return employee.getIsCreditAvailable();
+    }
+
+    @Override
     public Employee create(Employee employee) {
         if (employee == null) {
             return null;

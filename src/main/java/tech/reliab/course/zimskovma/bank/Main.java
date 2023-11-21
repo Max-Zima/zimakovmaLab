@@ -12,6 +12,11 @@ import tech.reliab.course.zimskovma.bank.entity.User;
 import tech.reliab.course.zimskovma.bank.entity.CreditAccount;
 import tech.reliab.course.zimskovma.bank.entity.Employee;
 import tech.reliab.course.zimskovma.bank.entity.PaymentAccount;
+import tech.reliab.course.zimskovma.bank.exception.CreditException;
+
+import tech.reliab.course.zimskovma.bank.exception.IncomException;
+import tech.reliab.course.zimskovma.bank.exception.PaymenAccountException;
+import tech.reliab.course.zimskovma.bank.exception.RatingException;
 import tech.reliab.course.zimskovma.bank.service.AtmService;
 import tech.reliab.course.zimskovma.bank.service.BankOfficeService;
 import tech.reliab.course.zimskovma.bank.service.BankService;
@@ -31,13 +36,20 @@ import tech.reliab.course.zimskovma.bank.utils.AtmStatus;
 import tech.reliab.course.zimskovma.bank.utils.Job;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CreditException, RatingException, IncomException {
         Random random = new Random();
         BankService bankService = new BankServiceImpl();
         BankOfficeService bankOfficeService = new BankOfficeServiceImpl(bankService);
         bankService.setBankOfficeService(bankOfficeService);
+
         EmployeeService employeeService = new EmployeeServiceImpl(bankOfficeService);
+        bankOfficeService.setEmployeeService(employeeService);
+
         AtmService atmService = new AtmServiceImpl(bankOfficeService);
+        bankOfficeService.setAtmService(atmService);
+
+        bankService.setBankOfficeService(bankOfficeService);
+
         UserService userService = new UserServiceImpl(bankService);
         bankService.setClientService(userService);
         PaymentAccountService paymentAccountService = new PaymentAccountServiceImpl(userService);
@@ -51,7 +63,7 @@ public class Main {
         List<Bank> banks = bankService.getAllBanks();
         for (Bank bank : banks) {
             for (int i = 1; i <= 3; i++) {
-                bankOfficeService.create(new BankOffice("Офис №" + i + " банка: " + bank.getName(), "г.Белгород, Гражданский проспект, " + String.valueOf(i + random.nextInt(0, 50)), bank, true, true, 0, true, true, true, 20000, 100 * i));
+                bankOfficeService.create(new BankOffice("Офис №" + i + " банка: " + bank.getName(), "г.Белгород, Гражданский проспект, " + String.valueOf(i + random.nextInt(0, 50)), bank, true, true, 0, true, true, true, 0, 100 * i));
             }
         }
 
@@ -64,7 +76,7 @@ public class Main {
 
         for (BankOffice office : offices) {
             for (int i = 1; i <= 3; i++) {
-                atmService.create(new BankAtm("Банкомат № " + i, office.getAddress(), AtmStatus.WORK, office.getBank(), office, bankOfficeService.getAllEmployeesByOfficeId(office.getId()).get(random.nextInt(bankOfficeService.getAllEmployeesByOfficeId(office.getId()).size())), true, true, 0, random.nextDouble() * 25));
+                atmService.create(new BankAtm("Банкомат № " + i, office.getAddress(), AtmStatus.WORK, office.getBank(), office, bankOfficeService.getAllEmployeesByOfficeId(office.getId()).get(random.nextInt(bankOfficeService.getAllEmployeesByOfficeId(office.getId()).size())), true, true, 10000, random.nextDouble() * 25));
             }
         }
 
@@ -95,6 +107,7 @@ public class Main {
             System.out.print("Здравствуйте, я банковский помошник, что вы хотите сделать:\n");
             System.out.print("Для того, чтобы получить информацию по банку введите: Банки \n");
             System.out.print("Для того, чтобы получить всю информацию о клиенте введите: Клиенты \n");
+            System.out.print("Для того, чтобы получить кредит введите: Кредит \n");
             System.out.print("Для того, чтобы выйти введите Q\n");
 
             Scanner in = new Scanner(System.in);
@@ -106,8 +119,8 @@ public class Main {
                         System.out.println(bank.getId() + " - " + bank.getName());
                     }
                     System.out.println("Введите номер, интересующего банка:");
-                    int bankId = in.nextInt();
-                    bankService.printBankData(bankId);
+                    int bankId2= in.nextInt();
+                    bankService.printBankData(bankId2);
                     break;
                 case ("Клиенты"):
                     System.out.println("Всего клиентов = " + userService.getAllUsers().size());
@@ -118,13 +131,48 @@ public class Main {
                     int userId = in.nextInt();
                     userService.printUserData(userId, true);
                     break;
+                case ("Кредит"):
+                    System.out.println("Список польхователей:");
+                    for (User user : userService.getAllUsers()) {
+                        System.out.println(user.getId() + ". " + user.getName());
+                    }
+                    System.out.println("Выбери заёмщика, введите его номер:");
+                    int clientId = in.nextInt();
+                    in.nextLine();
+                    System.out.println("Введите сумму кредита:");
+                    double amount = Double.parseDouble(in.nextLine());
+                    System.out.println("Введите срок кредита(месяцев)");
+                    int months = in.nextInt();
+                    in.nextLine();
+
+                    List<Bank> suitableBanks = bankService.getBanksSuitable(amount, months);
+                    System.out.println("Список подходящих банков:");
+                    for (Bank bank : suitableBanks) {
+                        System.out.println(+ bank.getId() + ". " + bank.getName());
+                    }
+                    int bankId = in.nextInt();
+                    in.nextLine();
+                    Bank bank = bankService.getBankById(bankId);
+                    BankOffice bankOffice = bankService.getBankOfficeSuitableInBank(bank, amount)
+                            .get(0);
+                    Employee employee = bankOfficeService.getSuitableEmployeeInOffice(bankOffice)
+                            .get(0);
+                    PaymentAccount paymentAccount;
+                    paymentAccount = userService.getBestPaymentAccount(clientId);
+                    CreditAccount creditAccount = creditAccountService.create(new CreditAccount(
+                            userService.getUserById(clientId), bank, LocalDate.now(), months, amount, 0, 0, employee, paymentAccount));
+                    if (bankService.approveCredit(bank, creditAccount, employee)) {
+                        System.out.println("Кредит одобрен " + creditAccount.getId());
+                    } else {
+                        System.out.println("Кредит не одобрен");
+                    }
+                    break;
                 case ("Выход"):
                     break;
                 default:
                     System.out.print("Не корректный ввод\n");
                     break;
             }
-
         }
     }
 }

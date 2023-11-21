@@ -8,19 +8,33 @@ import java.util.Map;
 import tech.reliab.course.zimskovma.bank.entity.BankAtm;
 import tech.reliab.course.zimskovma.bank.entity.BankOffice;
 import tech.reliab.course.zimskovma.bank.entity.Employee;
+import tech.reliab.course.zimskovma.bank.service.AtmService;
 import tech.reliab.course.zimskovma.bank.service.BankOfficeService;
 import tech.reliab.course.zimskovma.bank.service.BankService;
+import tech.reliab.course.zimskovma.bank.service.EmployeeService;
 
 public class BankOfficeServiceImpl implements BankOfficeService {
 
-    Map<Integer, BankOffice> bankOfficesTable  = new HashMap<Integer, BankOffice>();
-    Map<Integer, List<Employee>> employeeByOfficeIdTable   = new HashMap<Integer, List<Employee>>();
-    Map<Integer, List<BankAtm>> atmByOfficeIdTable   = new HashMap<Integer, List<BankAtm>>();
+    Map<Integer, BankOffice> bankOfficesTable = new HashMap<Integer, BankOffice>();
+    Map<Integer, List<Employee>> employeeByOfficeIdTable = new HashMap<Integer, List<Employee>>();
+    Map<Integer, List<BankAtm>> atmByOfficeIdTable = new HashMap<Integer, List<BankAtm>>();
 
     private final BankService bankService;
+    private EmployeeService employeeService;
+    private AtmService atmService;
 
     public BankOfficeServiceImpl(BankService bankService) {
         this.bankService = bankService;
+    }
+
+    @Override
+    public void setEmployeeService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
+
+    @Override
+    public void setAtmService(AtmService atmService) {
+        this.atmService = atmService;
     }
 
     @Override
@@ -92,6 +106,28 @@ public class BankOfficeServiceImpl implements BankOfficeService {
     }
 
     @Override
+    public List<BankAtm> getSuitableBankAtmInOffice(BankOffice bankOffice, double money) {
+        List<BankAtm> bankAtmByOffice = atmByOfficeIdTable.get(bankOffice.getId());
+        List<BankAtm> suitableBankAtm = new ArrayList<>();
+
+        for (BankAtm bankAtm : bankAtmByOffice) {
+            if (atmService.isAtmSuitable(bankAtm, money)) {
+                suitableBankAtm.add(bankAtm);
+            }
+        }
+
+        return suitableBankAtm;
+    }
+
+    @Override
+    public boolean addMoney(BankOffice bankOffice, double amount) {
+        bankOffice.setTotalMoney(bankOffice.getTotalMoney() + amount);
+        bankOffice.getBank().setTotalMoney(bankOffice.getBank().getTotalMoney() + amount);
+
+        return true;
+    }
+
+    @Override
     public boolean addAtm(int id, BankAtm bankAtm) {
         BankOffice bankOffice = getBankOfficeById(id);
         if (bankOffice != null && bankAtm != null) {
@@ -107,6 +143,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
             bankAtm.setBank(bankOffice.getBank());
             List<BankAtm> officeAtms = atmByOfficeIdTable.get(bankOffice.getId());
             officeAtms.add(bankAtm);
+            addMoney(bankOffice, bankAtm.getTotalMoney());
 
             return true;
         }
@@ -126,4 +163,39 @@ public class BankOfficeServiceImpl implements BankOfficeService {
         }
         return false;
     }
+
+    @Override
+    public List<Employee> getSuitableEmployeeInOffice(BankOffice bankOffice) {
+        List<Employee> employees = getAllEmployeesByOfficeId(bankOffice.getId());
+        List<Employee> suitableEmployee = new ArrayList<>();
+
+        for (Employee employee : employees) {
+            if (employeeService.isEmployeeSuitable(employee)) {
+                suitableEmployee.add(employee);
+            }
+        }
+
+        return suitableEmployee;
+    }
+
+    @Override
+    public boolean isSuitableBankOffice(BankOffice bankOffice, double money) {
+        if (bankOffice.getIsWorking() && bankOffice.getIsCashWithdrawalAvailable()
+                && bankOffice.getTotalMoney() >= money) {
+            List<BankAtm> bankAtmSuitable = getSuitableBankAtmInOffice(bankOffice, money);
+            if (bankAtmSuitable.isEmpty()) {
+                return false;
+            }
+
+            List<Employee> employeesSuitable = getSuitableEmployeeInOffice(bankOffice);
+            if (employeesSuitable.isEmpty()) {
+                return false;
+            }
+            return true;
+        }
+
+        return false;
+    }
 }
+
+

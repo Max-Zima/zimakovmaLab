@@ -3,14 +3,14 @@ package tech.reliab.course.zimskovma.bank.entity;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class CreditAccount extends Account{
+public class CreditAccount extends Account {
     private LocalDate dateStart;
     private LocalDate dateEnd;
     private int monthCount;
-    private double  creditAmount;
-    private double  remainingCreditAmount;
-    private double  montlyPayment;
-    private double  interestRate;
+    private double creditAmount;
+    private double remainingCreditAmount;
+    private double montlyPayment;
+    private double interestRate;
     private Employee employee;
     private PaymentAccount paymentAccount;
 
@@ -36,6 +36,7 @@ public class CreditAccount extends Account{
         super(user);
         initDefault();
     }
+
     public CreditAccount(int id, User user) {
         super(id, user);
         initDefault();
@@ -59,8 +60,8 @@ public class CreditAccount extends Account{
     }
 
     public CreditAccount(User user, Bank bank, LocalDate dateStart, LocalDate dateEnd, int monthCount,
-                         double  creditAmount, double  remainingCreditAmount, double  montlyPayment,
-                         double  interestRate, Employee employee, PaymentAccount paymentAccount) {
+                         double creditAmount, double remainingCreditAmount, double montlyPayment,
+                         double interestRate, Employee employee, PaymentAccount paymentAccount) {
         super(user, bank);
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
@@ -74,8 +75,8 @@ public class CreditAccount extends Account{
     }
 
     public CreditAccount(int id, User user, Bank bank, LocalDate dateStart, LocalDate dateEnd, int monthCount,
-                         double  creditAmount, double  remainingCreditAmount, double  montlyPayment,
-                         double  interestRate, Employee employee, PaymentAccount paymentAccount) {
+                         double creditAmount, double remainingCreditAmount, double montlyPayment,
+                         double interestRate, Employee employee, PaymentAccount paymentAccount) {
         super(id, user, bank);
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
@@ -99,6 +100,21 @@ public class CreditAccount extends Account{
         this.interestRate = creditAccount.interestRate;
         this.employee = new Employee(creditAccount.employee);
         this.paymentAccount = new PaymentAccount(creditAccount.paymentAccount);
+    }
+
+    public CreditAccount(User user, Bank bank, LocalDate dateStart, int monthCount,
+                         double creditAmount, double montlyPayment, double interestRate,
+                         Employee employee, PaymentAccount paymentAccount) {
+        super(user, bank);
+        this.dateStart = dateStart;
+        this.dateEnd = dateStart.plusMonths(monthCount);
+        this.monthCount = monthCount;
+        this.creditAmount = creditAmount;
+        this.remainingCreditAmount = creditAmount;
+        this.montlyPayment = montlyPayment;
+        this.interestRate = interestRate;
+        this.employee = employee;
+        this.paymentAccount = paymentAccount;
     }
 
     public LocalDate getDateStart() {
@@ -125,31 +141,31 @@ public class CreditAccount extends Account{
         this.monthCount = monthCount;
     }
 
-    public double  getCreditAmount() {
+    public double getCreditAmount() {
         return this.creditAmount;
     }
 
-    public void setCreditAmount(double  creditAmount) {
+    public void setCreditAmount(double creditAmount) {
         this.creditAmount = creditAmount;
     }
 
-    public double  getRemainingCreditAmount() {
+    public double getRemainingCreditAmount() {
         return this.remainingCreditAmount;
     }
 
-    public void setRemainingCreditAmount(double  remainingCreditAmount) {
+    public void setRemainingCreditAmount(double remainingCreditAmount) {
         this.remainingCreditAmount = remainingCreditAmount;
     }
 
-    public double  getMonthlyPayment() {
+    public double getMonthlyPayment() {
         return this.montlyPayment;
     }
 
-    public void setMontlyPayment(double  montlyPayment) {
+    public void setMontlyPayment(double montlyPayment) {
         this.montlyPayment = montlyPayment;
     }
 
-    public double  getInterestRate() {
+    public double getInterestRate() {
         return this.interestRate;
     }
 
@@ -175,7 +191,7 @@ public class CreditAccount extends Account{
 
     @Override
     public String toString() {
-        return  "Кредитный " + super.toString() +
+        return "Кредитный " + super.toString() +
                 " Дата начала кредита = " + getDateStart().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) +
                 ",\n Дата окончания кредита = " + getDateEnd().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) +
                 ",\n Срок кредита = " + getMonthCount() + " мес." +

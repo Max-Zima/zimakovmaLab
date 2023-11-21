@@ -9,6 +9,8 @@ import tech.reliab.course.zimskovma.bank.entity.User;
 public interface UserService {
     User create(User user);
 
+    PaymentAccount getBestPaymentAccount(int id);
+
     public void printUserData(int id, boolean withAccounts);
 
     public boolean addCreditAccount(int id, CreditAccount account);

@@ -11,7 +11,7 @@ import tech.reliab.course.zimskovma.bank.service.BankOfficeService;
 
 public class AtmServiceImpl implements AtmService {
 
-    Map<Integer, BankAtm> atmTable = new HashMap<Integer, BankAtm> ();
+    Map<Integer, BankAtm> atmTable = new HashMap<Integer, BankAtm>();
 
     private final BankOfficeService bankOfficeService;
 
@@ -58,5 +58,15 @@ public class AtmServiceImpl implements AtmService {
         return newAtm;
     }
 
+    @Override
+    public boolean isAtmSuitable(BankAtm bankAtm, double money) {
+        return bankAtm.getTotalMoney() >= money;
+    }
+
+    @Override
+    public boolean addMoney(BankAtm bankAtm, double amount) {
+        bankAtm.setTotalMoney(bankAtm.getTotalMoney() + amount);
+        return true;
+    }
 
 }

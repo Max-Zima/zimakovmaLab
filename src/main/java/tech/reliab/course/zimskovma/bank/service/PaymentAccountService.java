@@ -5,6 +5,8 @@ import java.util.List;
 import tech.reliab.course.zimskovma.bank.entity.PaymentAccount;
 
 public interface PaymentAccountService {
+    double getBalance(int id);
+
     PaymentAccount create(PaymentAccount paymentAccount);
 
     public void printPaymentData(int id);

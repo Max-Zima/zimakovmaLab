@@ -1,9 +1,9 @@
 package tech.reliab.course.zimskovma.bank.service;
 
-import tech.reliab.course.zimskovma.bank.entity.Bank;
-import tech.reliab.course.zimskovma.bank.entity.BankOffice;
-import tech.reliab.course.zimskovma.bank.entity.Employee;
-import tech.reliab.course.zimskovma.bank.entity.User;
+import tech.reliab.course.zimskovma.bank.entity.*;
+import tech.reliab.course.zimskovma.bank.exception.CreditException;
+import tech.reliab.course.zimskovma.bank.exception.IncomException;
+import tech.reliab.course.zimskovma.bank.exception.RatingException;
 
 import java.util.List;
 
@@ -30,4 +30,12 @@ public interface BankService {
     boolean addUser(int id, User user);
 
     boolean addEmployee(Bank bank, Employee employee);
+
+    List<BankOffice> getBankOfficeSuitableInBank(Bank bank, double money);
+
+    boolean isBankSuitable(Bank bank, double money);
+
+    List<Bank> getBanksSuitable(double sum, int countMonth) throws CreditException;
+
+    boolean approveCredit(Bank bank, CreditAccount account, Employee employee) throws CreditException, RatingException, IncomException;
 }

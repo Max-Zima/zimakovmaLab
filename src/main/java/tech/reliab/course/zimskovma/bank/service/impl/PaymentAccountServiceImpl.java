@@ -2,7 +2,6 @@ package tech.reliab.course.zimskovma.bank.service.impl;
 
 import java.util.*;
 
-import tech.reliab.course.zimskovma.bank.entity.CreditAccount;
 import tech.reliab.course.zimskovma.bank.entity.PaymentAccount;
 import tech.reliab.course.zimskovma.bank.service.PaymentAccountService;
 import tech.reliab.course.zimskovma.bank.service.UserService;
@@ -13,6 +12,12 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
 
     public PaymentAccountServiceImpl(UserService userService) {
         this.userService = userService;
+    }
+
+    @Override
+    public double getBalance(int id){
+        PaymentAccount paymentAccount = getPaymentAccountById(id);
+        return paymentAccount.getBalance();
     }
 
     @Override
