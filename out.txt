@@ -1,0 +1,62 @@
+[
+  {
+    "dateStart": {},
+    "dateEnd": {},
+    "monthCount": 60,
+    "creditAmount": 703662.0,
+    "remainingCreditAmount": 314702.0,
+    "montlyPayment": 81275.0,
+    "interestRate": 6.8156174194608585,
+    "employee": {},
+    "paymentAccount": {
+      "balance": 6531.544996045283,
+      "id": 11
+    },
+    "id": 155
+  },
+  {
+    "dateStart": {},
+    "dateEnd": {},
+    "monthCount": 60,
+    "creditAmount": 703662.0,
+    "remainingCreditAmount": 314702.0,
+    "montlyPayment": 81275.0,
+    "interestRate": 6.8156174194608585,
+    "employee": {},
+    "paymentAccount": {
+      "balance": 6531.544996045283,
+      "id": 11
+    },
+    "id": 155
+  },
+  {
+    "dateStart": {},
+    "dateEnd": {},
+    "monthCount": 60,
+    "creditAmount": 104604.0,
+    "remainingCreditAmount": 666212.0,
+    "montlyPayment": 33618.0,
+    "interestRate": 6.8156174194608585,
+    "employee": {},
+    "paymentAccount": {
+      "balance": 659.5991716060312,
+      "id": 7
+    },
+    "id": 157
+  },
+  {
+    "dateStart": {},
+    "dateEnd": {},
+    "monthCount": 60,
+    "creditAmount": 104604.0,
+    "remainingCreditAmount": 666212.0,
+    "montlyPayment": 33618.0,
+    "interestRate": 6.8156174194608585,
+    "employee": {},
+    "paymentAccount": {
+      "balance": 659.5991716060312,
+      "id": 7
+    },
+    "id": 157
+  }
+]

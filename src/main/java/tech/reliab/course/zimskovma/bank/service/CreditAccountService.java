@@ -10,4 +10,8 @@ public interface CreditAccountService {
     public CreditAccount getCreditAccountById(int id);
 
     public List<CreditAccount> getAllCreditAccounts();
+
+    boolean importAccountsTxtAndTransferToBank(String fileName, int newBankId);
+
+    boolean exportClientAccountsToTxt(int clientId, int bankId);
 }
